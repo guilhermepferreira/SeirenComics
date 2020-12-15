@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class UserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $user = auth()->user();
+        return response()->json([
+            'user' => [
+                'name' => $user->name,
+                'nickname' => $user->nickname,
+                'days_left' => Carbon::now()->diffInDays(Carbon::parse($user->license_end)),
+                'license_end' => Carbon::parse($user->license_end)->format('d/m/Y')
+                ],
+        ]);
+    }
+
+    public function alterDates()
+    {
+        $users = User::all();
+
+        foreach ($users as $user) {
+
+            $user->license_start = Carbon::parse($user->license_start);
+            $user->license_end = Carbon::parse($user->license_end);
+            dd($user);
+        }
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
