@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bloqueados;
 use App\Models\Comic;
+use App\Models\ComicType;
 use App\Models\Serie;
 use App\Models\TbComic;
 use App\Models\User;
@@ -27,15 +28,5 @@ class Controller extends BaseController
             $user->save();
         }
     }
-
-    public function alterSeries()
-    {
-        $hqs = TbComic::all();
-        foreach ($hqs as $hq) {
-            dd($hq);
-        }
-    }
-
-
 
 }

@@ -28,17 +28,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function alterDates()
-    {
-        $users = User::all();
-
-        foreach ($users as $user) {
-
-            $user->license_start = Carbon::parse($user->license_start);
-            $user->license_end = Carbon::parse($user->license_end);
-            dd($user);
-        }
-    }
     /**
      * Store a newly created resource in storage.
      *
