@@ -3029,7 +3029,7 @@ TransacaoID</ColNames>
     </key>
     <column id="740" parent="336" name="id">
       <Position>1</Position>
-      <DataType>int|0s</DataType>
+      <DataType>bigint unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>

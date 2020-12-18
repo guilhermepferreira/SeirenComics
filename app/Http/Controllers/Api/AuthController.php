@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Managers\User as Usermanager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use \App\Models\User as UserModel;
 
 class AuthController extends Controller
 {
@@ -22,7 +24,8 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+            $profile = new Usermanager(UserModel::find(Auth::id()));
+        return response()->json(['user' => $profile->getProfile(), 'access_token' =>$token], 200);
     }
 
     /**

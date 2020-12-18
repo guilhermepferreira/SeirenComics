@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/att',[\App\Http\Controllers\Api\UserController::class, 'alterDates']);
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class,'login']);
 
 Route::middleware('apiJwt')->prefix('/user/profile')->group(function (){

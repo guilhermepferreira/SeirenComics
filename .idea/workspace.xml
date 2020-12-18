@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Segundo">
+    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Correção guard login route">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +150,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -155,6 +158,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\guilh\PhpstormProjects\SeirenComics\database\migrations" />
       <recent name="C:\Users\guilh\PhpstormProjects\SeirenComics" />
     </key>
   </component>
@@ -175,7 +179,7 @@
       <workItem from="1607993469080" duration="108000" />
       <workItem from="1608065490336" duration="850000" />
       <workItem from="1608135623012" duration="362000" />
-      <workItem from="1608237664737" duration="9785000" />
+      <workItem from="1608237664737" duration="12736000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro">
       <created>1607993530244</created>
@@ -198,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608246750853</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Correção guard login route">
+      <created>1608251743199</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608251743199</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +230,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primeiro" />
     <MESSAGE value="Segundo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Segundo" />
+    <MESSAGE value="Correção guard login route" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção guard login route" />
   </component>
 </project>
