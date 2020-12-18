@@ -30,4 +30,20 @@ class Comic extends Model
       'old_id',
       'category',
     ];
+
+    protected $hidden = [
+        'path',
+        'status',
+        'changer',
+        'comic_type_id',
+        'old_id',
+        'category',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function type()
+    {
+        return $this->belongsTo(ComicType::class, 'comic_type_id', 'id');
+    }
 }

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
 use \App\Http\Controllers\Api\UserController;
+use \App\Http\Controllers\Api\ComicController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,8 +25,8 @@ Route::middleware('apiJwt')->prefix('/user')->group(function (){
     Route::get('/deactivate/{id}',[UserController::class, 'destroy'])->name('deactivate.profile');
 });
 
-Route::middleware('apiJwt')->prefix('/user/profile')->group(function (){
-//    Route::get('/',[UserController::class, 'show'])->name('get.profile');
+Route::middleware('apiJwt')->prefix('/comics')->group(function (){
+    Route::get('/',[ComicController::class, 'homePage'])->name('get.home');
 //    Route::post('/edit/{id}',[UserController::class, 'update'])->name('update.profile');
 //    Route::get('/deactivate/{id}',[UserController::class, 'destroy'])->name('deactivate.profile');
 });
