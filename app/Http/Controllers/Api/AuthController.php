@@ -20,11 +20,12 @@ class AuthController extends Controller
     {
         $credentials = $request->only(['email', 'password']);
 
+
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-            $profile = new Usermanager(UserModel::find(Auth::id()));
+        $profile = new Usermanager(UserModel::find(Auth::id()));
         return response()->json(['user' => $profile->getProfile(), 'access_token' =>$token], 200);
     }
 

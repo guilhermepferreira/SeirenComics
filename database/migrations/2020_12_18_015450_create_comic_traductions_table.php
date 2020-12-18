@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserComicsTable extends Migration
+class CreateComicTraductionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUserComicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_comics', function (Blueprint $table) {
+        Schema::create('comic_traductions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('comic_id')->unsigned();
+            $table->string('language');
+            $table->string('translated_name');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('comic_id')->references('id')->on('comics')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('comic_id')->references('id')->on('comics')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateUserComicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_comics');
+        Schema::dropIfExists('comic_traductions');
     }
 }

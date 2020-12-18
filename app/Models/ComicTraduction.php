@@ -5,9 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TbComic extends Model
+class ComicTraduction extends Model
 {
     use HasFactory;
-
-    protected $table='tb_comics';
 }

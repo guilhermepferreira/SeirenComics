@@ -22,13 +22,16 @@ class User
 
     private function setProfile()
     {
+
         return [
             'id' => $this->user->id,
             'name' => $this->user->name,
             'nickname' => $this->user->nickname,
             'email' => $this->user->email,
             'days_left' => Carbon::now()->diffInDays(Carbon::parse($this->user->license_end)),
-            'license_end' => Carbon::parse($this->user->license_end)->format('d/m/Y')
+            'license_end' => empty($this->user->license_end) ? null : Carbon::parse($this->user->license_end)->format('d/m/Y'),
+            'favorites' => $this->user->favorites,
+            'type'=> $this->user->type,
         ];
     }
 }

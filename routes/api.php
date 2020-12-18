@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\Api\AuthController;
+use \App\Http\Controllers\Api\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,8 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login', [\App\Http\Controllers\Api\AuthController::class,'login']);
+Route::post('/login', [AuthController::class,'login']);
+Route::post('/register', [UserController::class,'store']);
+
+Route::middleware('apiJwt')->prefix('/user')->group(function (){
+    Route::get('/profile',[UserController::class, 'show'])->name('get.profile');
+    Route::post('/edit/{id}',[UserController::class, 'update'])->name('update.profile');
+    Route::get('/deactivate/{id}',[UserController::class, 'destroy'])->name('deactivate.profile');
+});
 
 Route::middleware('apiJwt')->prefix('/user/profile')->group(function (){
-    Route::get('/',[\App\Http\Controllers\Api\UserController::class, 'index'])->name('get.profile');
+//    Route::get('/',[UserController::class, 'show'])->name('get.profile');
+//    Route::post('/edit/{id}',[UserController::class, 'update'])->name('update.profile');
+//    Route::get('/deactivate/{id}',[UserController::class, 'destroy'])->name('deactivate.profile');
 });

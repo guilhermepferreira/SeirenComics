@@ -14,17 +14,22 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory, Notifiable;
 
     protected $table = 'users';
-    protected $fillable=[
-      'id',
-      'user_type_id',
-      'name',
-      'email',
-      'status',
-      'is_active',
-      'nickname',
+    protected $fillable = [
+        'id',
+        'user_type_id',
+        'name',
+        'email',
+        'status',
+        'is_active',
+        'nickname',
+        'password',
+        'license_start',
+        'license_end',
+        'created_at',
+        'updated_at'
     ];
 
-    protected $hidden=[
+    protected $hidden = [
         'password',
         'license_start',
         'license_end',
@@ -40,5 +45,13 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function favorites(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(UserComic::class);
+    }
+    public function type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(UserType::class,'user_type_id','id');
     }
 }
