@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Finalização do CRUD de Usuario">
+    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Chega por hj">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Comic.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Comic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ComicType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ComicType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ComicTraduction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ComicTraduction.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +151,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/BSA-WebApp" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -179,7 +180,10 @@
       <workItem from="1607993469080" duration="108000" />
       <workItem from="1608065490336" duration="850000" />
       <workItem from="1608135623012" duration="362000" />
-      <workItem from="1608237664737" duration="22914000" />
+      <workItem from="1608237664737" duration="22937000" />
+      <workItem from="1608318298365" duration="2720000" />
+      <workItem from="1609765843206" duration="4235000" />
+      <workItem from="1610038081866" duration="15995000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro">
       <created>1607993530244</created>
@@ -223,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608262673167</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Chega por hj">
+      <created>1608264871246</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608264871246</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +258,7 @@
     <MESSAGE value="Correção guard login route" />
     <MESSAGE value="Criação profile apos o login" />
     <MESSAGE value="Finalização do CRUD de Usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalização do CRUD de Usuario" />
+    <MESSAGE value="Chega por hj" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chega por hj" />
   </component>
 </project>

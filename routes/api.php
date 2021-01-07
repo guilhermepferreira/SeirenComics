@@ -25,8 +25,9 @@ Route::middleware('apiJwt')->prefix('/user')->group(function (){
     Route::get('/deactivate/{id}',[UserController::class, 'destroy'])->name('deactivate.profile');
 });
 
+Route::get('/',[ComicController::class, 'homePage'])->name('get.home');
+
 Route::middleware('apiJwt')->prefix('/comics')->group(function (){
-    Route::get('/',[ComicController::class, 'homePage'])->name('get.home');
-//    Route::post('/edit/{id}',[UserController::class, 'update'])->name('update.profile');
-//    Route::get('/deactivate/{id}',[UserController::class, 'destroy'])->name('deactivate.profile');
+    Route::get('/{id}',[ComicController::class, 'get'])->name('get.comic');
+
 });

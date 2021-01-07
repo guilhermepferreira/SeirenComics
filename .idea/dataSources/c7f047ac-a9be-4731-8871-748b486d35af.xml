@@ -1377,6 +1377,7 @@ SELECT|sys.sys_config
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;pt_br&apos;</DefaultExpression>
     </column>
     <column id="396" parent="298" name="translated_name">
       <Position>4</Position>
@@ -3147,8 +3148,7 @@ TransacaoID</ColNames>
     </column>
     <column id="764" parent="338" name="name">
       <Position>4</Position>
-      <DataType>varchar(200)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="765" parent="338" name="email">
       <Position>5</Position>

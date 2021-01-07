@@ -46,4 +46,9 @@ class Comic extends Model
     {
         return $this->belongsTo(ComicType::class, 'comic_type_id', 'id');
     }
+
+    public function traductions()
+    {
+        return $this->hasMany(ComicTraduction::class, 'comic_id', 'id');
+    }
 }
