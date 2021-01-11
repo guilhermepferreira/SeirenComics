@@ -18,7 +18,7 @@ class ComicController extends BaseController
      */
     public function homePage()
     {
-        $comics = Comic::with('type','traductions')->get();
+        $comics = Comic::with('type', 'traductions')->get();
         $highlights = $this->getCapa($comics->sortByDesc('rating')->take(10));
         $mostViews = $comics->sortByDesc('views')->take(10);
         $news = $comics->sortBy('cretead_at')->take(10);
@@ -38,13 +38,13 @@ class ComicController extends BaseController
         $pages = [];
         foreach ($traductions as $traduction) {
             $traduction_pages = [];
-            $files = File::files(public_path(Storage::url($path.'/'.$traduction->language)));
+            $files = File::files(public_path(Storage::url($path . '/' . $traduction->language)));
             foreach ($files as $page) {
-                $traduction_pages[]=$page->getFilename();
+                $traduction_pages[] = $page->getFilename();
             }
             $pages[$traduction->language] = $traduction_pages;
         }
-        return response()->json(['comic' =>$comic, 'pages' => $pages]);
+        return response()->json(['comic' => $comic, 'pages' => $pages]);
     }
 
     private function getCapa($comics)
@@ -54,7 +54,29 @@ class ComicController extends BaseController
         }
     }
 
-    private function clean($string) {
+    public function moveImg()
+    {
+        $files = File::files(public_path('ComicsPTBR/'));
+
+        foreach ($files as $file) {
+            $name = $file->getFilename();
+            $id = ltrim(explode('-', $name)[1], '0');
+            $comic = Comic::find($id);
+            $path = public_path($comic->path);
+            if (!File::exists($path)) {
+                File::makeDirectory($path);
+                File::makeDirectory($path.'pt_br');
+            }
+            rename(public_path('ComicsPTBR/'.$name), $path.'pt_br');
+            dd("foi uma");
+        }
+    }
+
+    private function clean($string)
+    {
+
+        $sub = ["!", "'", "@", "#", "$", "%", "¨", "&", "*", "(", ")", "-", "_", "=", "+", ".", ",", "?", "/", " "];
+        $string = str_replace($sub, "", $string);
 
         $map = array(
             'á' => 'a',
