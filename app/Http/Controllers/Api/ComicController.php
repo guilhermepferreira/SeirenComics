@@ -19,7 +19,7 @@ class ComicController extends BaseController
     public function homePage()
     {
         $comics = Comic::with('type', 'traductions')->get();
-        $highlights = $comics->sortByDesc('rating')->take(10);
+        $highlights = $this->getCapa($comics->sortByDesc('rating')->take(10));
         $mostViews = $comics->sortByDesc('views')->take(10);
         $news = $comics->sortBy('cretead_at')->take(10);
         return response()->json([
@@ -50,25 +50,10 @@ class ComicController extends BaseController
     private function getCapa($comics)
     {
         foreach ($comics as $comic) {
-            dd($comic->path);
-        }
-    }
+            $capa = File::files(storage_path('app/public/'.$comic->path.'pt_br'));
 
-    public function moveImg()
-    {
-        $files = File::files(public_path('ComicsPTBR/'));
+            dd($capa);
 
-        foreach ($files as $file) {
-            $name = $file->getFilename();
-            $id = ltrim(explode('-', $name)[1], '0');
-            $comic = Comic::find($id);
-            $path = public_path($comic->path);
-            if (!File::exists($path)) {
-                File::makeDirectory($path);
-                File::makeDirectory($path.'pt_br');
-            }
-            rename(public_path('ComicsPTBR/'.$name), $path.'pt_br');
-            dd("foi uma");
         }
     }
 
