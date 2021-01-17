@@ -18,14 +18,15 @@ class ComicController extends BaseController
      */
     public function homePage()
     {
-        $comics = Comic::with('type', 'traductions')->get();
-        $highlights = $this->getCapa($comics->sortByDesc('rating')->take(10));
+        $comics = $this->getCapa(Comic::with('type', 'traductions')->get());
+        $highlights = $comics->sortByDesc('rating')->take(10);
         $mostViews = $comics->sortByDesc('views')->take(10);
         $news = $comics->sortBy('cretead_at')->take(10);
         return response()->json([
             'novidades' => $news,
             'maisVistos' => $mostViews,
-            'melhoresRankings' => $highlights
+            'melhoresRankings' => $highlights,
+            'todos' => $comics
         ]);
     }
 
