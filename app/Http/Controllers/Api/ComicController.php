@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\Comic;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,8 @@ class ComicController extends BaseController
      */
     public function homePage()
     {
-        $comics = $this->getCapa(Comic::with('type', 'traductions')->get());
+        $comics = Comic::with('type', 'traductions')->get()->sortBy('id');
+        $comics = $this->getCapa($comics->sortBy('id')->take($comics->count()));
         $highlights = $comics->sortByDesc('rating')->take(10);
         $mostViews = $comics->sortByDesc('views')->take(10);
         $news = $comics->sortBy('cretead_at')->take(10);
@@ -35,7 +37,6 @@ class ComicController extends BaseController
     {
         $comic = Comic::find($id);
         $path = $comic->path;
-
 
         $traductions = File::directories(storage_path('app/public/'.$path));
 
@@ -55,13 +56,15 @@ class ComicController extends BaseController
 
     private function getCapa($comics)
     {
-        foreach ($comics as $comic) {
-            $capa = File::exists(storage_path('app/public/'.$comic->path.'pt_br')) ? File::files(storage_path('app/public/'.$comic->path.'pt_br')) : null;
 
-            if (isEmpty($capa)){
-                dd($comic);
+        foreach ($comics as $comic) {
+
+            if (!File::exists(storage_path('app/public/'.$comic->path.'pt_br'))){
+                $comic->capa = null;
                 continue;
             }
+            $capa = File::files(storage_path('app/public/'.$comic->path.'pt_br'));
+
             $comic->capa = asset(Storage::url($comic->path.'pt_br/'.$capa[0]->getFilename()));
         }
         return $comics;
