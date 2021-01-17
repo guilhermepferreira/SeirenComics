@@ -19,7 +19,7 @@ class ComicController extends BaseController
     public function homePage()
     {
         $comics = Comic::with('type', 'traductions')->get();
-        $highlights = $comics->sortByDesc('rating')->take(10);
+        $highlights = $this->getCapa($comics->sortByDesc('rating')->take(10));
         $mostViews = $comics->sortByDesc('views')->take(10);
         $news = $comics->sortBy('cretead_at')->take(10);
         return response()->json([
@@ -34,15 +34,19 @@ class ComicController extends BaseController
         $comic = Comic::find($id);
         $path = $comic->path;
 
-        $traductions = $comic->traductions;
+
+        $traductions = File::directories(storage_path('app/public/'.$path));
+
         $pages = [];
         foreach ($traductions as $traduction) {
+            $pastas = explode("\\",$traduction);
+            $leanguage = end($pastas);
             $traduction_pages = [];
-            $files = File::files(public_path(Storage::url($path . '/' . $traduction->language)));
+            $files = File::files(storage_path('app/public/'.$path . $leanguage));
             foreach ($files as $page) {
-                $traduction_pages[] = $page->getFilename();
+                $traduction_pages[] = asset(Storage::url($path . $leanguage.'/'.$page->getFilename()));
             }
-            $pages[$traduction->language] = $traduction_pages;
+            $pages[$leanguage] = $traduction_pages;
         }
         return response()->json(['comic' => $comic, 'pages' => $pages]);
     }
@@ -52,9 +56,9 @@ class ComicController extends BaseController
         foreach ($comics as $comic) {
             $capa = File::files(storage_path('app/public/'.$comic->path.'pt_br'));
 
-            dd($capa);
-
+            $comic->capa = asset(Storage::url($comic->path.'pt_br/'.$capa[0]->getFilename()));
         }
+        dd($comics);
     }
 
     private function clean($string)

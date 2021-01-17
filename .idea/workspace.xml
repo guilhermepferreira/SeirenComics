@@ -23,6 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Alterações">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" afterDir="false" />
     </list>
@@ -204,7 +205,8 @@
       <workItem from="1610064845630" duration="921000" />
       <workItem from="1610409072667" duration="3992000" />
       <workItem from="1610579384428" duration="1087000" />
-      <workItem from="1610720715335" duration="5313000" />
+      <workItem from="1610720715335" duration="7335000" />
+      <workItem from="1610904820399" duration="7728000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro">
       <created>1607993530244</created>
@@ -276,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610411148322</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Alterações">
+      <created>1610741670500</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1610741670500</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
