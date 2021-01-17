@@ -206,7 +206,7 @@
       <workItem from="1610579384428" duration="1087000" />
       <workItem from="1610720715335" duration="7335000" />
       <workItem from="1610904820399" duration="11157000" />
-      <workItem from="1610923802033" duration="1179000" />
+      <workItem from="1610923802033" duration="1234000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro">
       <created>1607993530244</created>
@@ -341,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610921136957</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="atualização">
+      <created>1610925278645</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1610925278645</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,6 +377,7 @@
     <MESSAGE value="Alterações" />
     <MESSAGE value="Alterações capa" />
     <MESSAGE value="Final capa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final capa" />
+    <MESSAGE value="atualização" />
+    <option name="LAST_COMMIT_MESSAGE" value="atualização" />
   </component>
 </project>

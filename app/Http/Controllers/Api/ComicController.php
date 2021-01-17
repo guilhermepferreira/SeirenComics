@@ -42,7 +42,7 @@ class ComicController extends BaseController
 
         $pages = [];
         foreach ($traductions as $traduction) {
-            $pastas = explode("\\",$traduction);
+            $pastas = explode("/",$traduction);
             $leanguage = end($pastas);
             dd($leanguage);
             $traduction_pages = [];
