@@ -44,6 +44,7 @@ class ComicController extends BaseController
         foreach ($traductions as $traduction) {
             $pastas = explode("\\",$traduction);
             $leanguage = end($pastas);
+            dd($leanguage);
             $traduction_pages = [];
             $files = File::files(storage_path('app/public/'.$path . $leanguage));
             foreach ($files as $page) {
