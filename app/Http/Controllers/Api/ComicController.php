@@ -55,7 +55,7 @@ class ComicController extends BaseController
     private function getCapa($comics)
     {
         foreach ($comics as $comic) {
-            $capa = File::files(storage_path('app/public/'.$comic->path.'pt_br'));
+            $capa = File::exists(storage_path('app/public/'.$comic->path.'pt_br')) ? File::files(storage_path('app/public/'.$comic->path.'pt_br')) : null;
 
             $comic->capa = asset(Storage::url($comic->path.'pt_br/'.$capa[0]->getFilename()));
         }
