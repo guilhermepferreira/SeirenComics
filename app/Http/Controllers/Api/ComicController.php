@@ -8,6 +8,7 @@ use App\Models\Comic;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use function PHPUnit\Framework\isEmpty;
 
 class ComicController extends BaseController
 {
@@ -56,7 +57,9 @@ class ComicController extends BaseController
     {
         foreach ($comics as $comic) {
             $capa = File::exists(storage_path('app/public/'.$comic->path.'pt_br')) ? File::files(storage_path('app/public/'.$comic->path.'pt_br')) : null;
-
+            if (isEmpty($capa)){
+                continue;
+            }
             $comic->capa = asset(Storage::url($comic->path.'pt_br/'.$capa[0]->getFilename()));
         }
         return $comics;
