@@ -58,7 +58,7 @@ class ComicController extends BaseController
 
             $comic->capa = asset(Storage::url($comic->path.'pt_br/'.$capa[0]->getFilename()));
         }
-        dd($comics);
+        return $comics;
     }
 
     private function clean($string)
