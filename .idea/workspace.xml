@@ -23,8 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Final capa">
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +174,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Middleware" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -178,6 +182,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\guilh\Documents\SeirenComics\app\Http\Middleware" />
       <recent name="C:\Users\guilh\PhpstormProjects\SeirenComics\database\migrations" />
       <recent name="C:\Users\guilh\PhpstormProjects\SeirenComics" />
     </key>
@@ -218,7 +223,7 @@
       <workItem from="1614352680519" duration="1462000" />
       <workItem from="1614366009101" duration="2745000" />
       <workItem from="1614552733142" duration="93000" />
-      <workItem from="1614552838488" duration="1286000" />
+      <workItem from="1614552838488" duration="2734000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro">
       <created>1607993530244</created>
@@ -374,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610925344804</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Final capa">
+      <created>1614554135063</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1614554135063</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,8 +414,8 @@
     <MESSAGE value="Criação endpoint de leitura hqs" />
     <MESSAGE value="Alterações" />
     <MESSAGE value="Alterações capa" />
-    <MESSAGE value="Final capa" />
     <MESSAGE value="atualização" />
-    <option name="LAST_COMMIT_MESSAGE" value="atualização" />
+    <MESSAGE value="Final capa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final capa" />
   </component>
 </project>

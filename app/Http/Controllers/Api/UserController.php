@@ -20,13 +20,13 @@ class UserController extends BaseController
      */
     public function index()
     {
-      //TODO: DPS NOS FAZ
+        //TODO: DPS NOS FAZ
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -50,7 +50,7 @@ class UserController extends BaseController
         $token = Auth::login($user);
         $profile = new UserManager($user);
 
-        return response()->json(['user' => $profile->getProfile(), 'access_token' =>$token], 200);
+        return response()->json(['user' => $profile->getProfile(), 'access_token' => $token], 200);
 
     }
 
@@ -62,14 +62,14 @@ class UserController extends BaseController
     public function show()
     {
         $profile = new UserManager(Auth::user());
-        return response()->json(['user' => $profile->getProfile()],200);
+        return response()->json(['user' => $profile->getProfile()], 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
@@ -97,10 +97,15 @@ class UserController extends BaseController
         return response()->json(['user' => $profile->getProfile()], 200);
     }
 
+    public function getAll()
+    {
+        return User::all();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
@@ -113,6 +118,6 @@ class UserController extends BaseController
 
         $user->fresh();
 
-        return response()->json(['message' => 'User has been disabled'],200);
+        return response()->json(['message' => 'User has been disabled'], 200);
     }
 }
