@@ -8,20 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
+    const ID_PAGSEGURO = 'PAGSEGURO';
+    const ID_STRIPE = 'STRIPE';
+
     use HasFactory;
 
-    public function scopeMonthly(Builder $query)
+    public function scopeMonthly(Builder $query, string $tipo)
     {
-        return $query->where('api_id', getenv('MONTHLY_SUBSCRIPTION_ID'));
+        return $query->where('api_id', getenv($tipo . '_MONTHLY_SUBSCRIPTION_ID'));
     }
 
-    public function scopeQuarterly(Builder $query)
+    public function scopeQuarterly(Builder $query, string $tipo)
     {
-        return $query->where('api_id', getenv('QUARTERLY_SUBSCRIPTION_ID'));
+        return $query->where('api_id', getenv($tipo . '_QUARTERLY_SUBSCRIPTION_ID'));
     }
 
-    public function scopeSemiannual(Builder $query)
+    public function scopeSemiannual(Builder $query, string $tipo)
     {
-        return $query->where('api_id', getenv('SEMIANNUAL_SUBSCRIPTION_id'));
+        return $query->where('api_id', getenv($tipo . '_SEMIANNUAL_SUBSCRIPTION_id'));
     }
 }
