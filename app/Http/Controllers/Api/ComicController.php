@@ -54,6 +54,12 @@ class ComicController extends BaseController
         return response()->json(['comic' => $comic, 'pages' => $pages]);
     }
 
+    public function createComic()
+    {
+
+    }
+
+
     private function getCapa($comics)
     {
 
