@@ -20,16 +20,12 @@ class CreateSubscriptionsTable extends Migration
             $table->string('stripe_id');
             $table->string('stripe_status');
             $table->string('stripe_plan')->nullable();
-            $table->unsignedBigInteger('plan_id');
             $table->integer('quantity')->nullable();
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
 
             $table->index(['user_id', 'stripe_status']);
-            $table->foreign('plan_id')
-                ->references('id')
-                ->on('plans');
         });
     }
 
