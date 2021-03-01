@@ -15,10 +15,6 @@ class AddPlansStripeCheckout extends Migration
      */
     public function up()
     {
-        Schema::table('plans', function (Blueprint $table) {
-           $table->string('stripe_id')->nullable()->change();
-           $table->string('pagseguro_id')->nullable()->change();
-        });
         $this->setupData();
     }
 
@@ -29,34 +25,76 @@ class AddPlansStripeCheckout extends Migration
      */
     public function down()
     {
-        Schema::table('plans', function (Blueprint $table) {
-            $table->string('stripe_id')->nullable(false)->change();
-            $table->string('pagseguro_id')->nullable(false)->change();
-        });
+        DB::table('plans')->insert([
+            [
+                'id' => 1,
+                'stripe_id' => getenv('STRIPE_MONTHLY_CHECKOUT_ID'),
+                'pagseguro_id' => getenv('PAGSEGURO_MONTHLY_SUBSCRIPTION_ID'),
+                'name' => 'Mensal',
+                'value' => 12
+            ],
+            [
+                'id' => 2,
+                'stripe_id' => getenv('STRIPE_QUARTERLY_CHECKOUT_ID'),
+                'pagseguro_id' => getenv('PAGSEGURO_QUARTERLY_SUBSCRIPTION_ID'),
+                'name' => 'Trimestral',
+                'value' => 33
+            ],
+            [
+                'id' => 3,
+                'stripe_id' => getenv('STRIPE_SEMIANNUAL_CHECKOUT_ID'),
+                'pagseguro_id' => getenv('PAGSEGURO_SEMIANNUAL_SUBSCRIPTION_id'),
+                'name' => 'Semestral',
+                'value' => 62
+            ],
+        ], [
+            [
+                'id' => 1,
+                'stripe_id' => getenv('STRIPE_MONTHLY_SUBSCRIPTION_ID'),
+                'pagseguro_id' => getenv('PAGSEGURO_MONTHLY_SUBSCRIPTION_ID'),
+                'name' => 'Mensal',
+                'value' => 12
+            ],
+            [
+                'id' => 2,
+                'stripe_id' => getenv('STRIPE_QUARTERLY_SUBSCRIPTION_ID'),
+                'pagseguro_id' => getenv('PAGSEGURO_QUARTERLY_SUBSCRIPTION_ID'),
+                'name' => 'Trimestral',
+                'value' => 33
+            ],
+            [
+                'id' => 3,
+                'stripe_id' => getenv('STRIPE_SEMIANNUAL_SUBSCRIPTION_id'),
+                'pagseguro_id' => getenv('PAGSEGURO_SEMIANNUAL_SUBSCRIPTION_id'),
+                'name' => 'Semestral',
+                'value' => 62
+            ],
+        ]);
     }
 
     private function setupData()
     {
+        DB::table('plans')->truncate();
         DB::table('plans')->insert([
             [
-                'id' => 4,
+                'id' => 1,
                 'stripe_id' => getenv('STRIPE_MONTHLY_CHECKOUT_ID'),
-                'pagseguro_id' => null,
-                'name' => 'Mensal pagamento único',
+                'pagseguro_id' => getenv('PAGSEGURO_MONTHLY_SUBSCRIPTION_ID'),
+                'name' => 'Mensal',
                 'value' => 12
             ],
             [
-                'id' => 5,
+                'id' => 2,
                 'stripe_id' => getenv('STRIPE_QUARTERLY_CHECKOUT_ID'),
-                'pagseguro_id' => null,
-                'name' => 'Trimestral pagamento único',
+                'pagseguro_id' => getenv('PAGSEGURO_QUARTERLY_SUBSCRIPTION_ID'),
+                'name' => 'Trimestral',
                 'value' => 33
             ],
             [
-                'id' => 6,
+                'id' => 3,
                 'stripe_id' => getenv('STRIPE_SEMIANNUAL_CHECKOUT_ID'),
-                'pagseguro_id' => null,
-                'name' => 'Semestral pagamento único',
+                'pagseguro_id' => getenv('PAGSEGURO_SEMIANNUAL_SUBSCRIPTION_ID'),
+                'name' => 'Semestral',
                 'value' => 62
             ],
         ]);
