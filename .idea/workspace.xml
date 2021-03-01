@@ -22,10 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Lista todos os planos">
+    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Api retornando todos os usuarios;">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_01_184238_add_plans_stripe_checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_01_184238_add_plans_stripe_checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Comic.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Comic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +51,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="stripe-checkout" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -231,9 +236,6 @@
       <workItem from="1614366009101" duration="2745000" />
       <workItem from="1614552733142" duration="93000" />
       <workItem from="1614552838488" duration="2734000" />
-      <workItem from="1614625139185" duration="532000" />
-      <workItem from="1614627497258" duration="22000" />
-      <workItem from="1614633219089" duration="649000" />
     </task>
     <task id="LOCAL-00001" summary="Primeiro">
       <created>1607993530244</created>
@@ -403,28 +405,7 @@
       <option name="project" value="LOCAL" />
       <updated>1614556033407</updated>
     </task>
-    <task id="LOCAL-00025" summary="Rota para realizar pagamento com o stripe que retorna id da sessao e a chave publica">
-      <created>1614622386370</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1614622386370</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Finaliza implementação do stripe checkout">
-      <created>1614624719493</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1614624719493</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Lista todos os planos">
-      <created>1614625314010</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1614625314010</updated>
-    </task>
-    <option name="localTasksCounter" value="28" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

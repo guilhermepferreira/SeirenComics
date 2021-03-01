@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\Comic;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -32,31 +34,78 @@ class ComicController extends BaseController
             'todos' => $comics
         ]);
     }
+    public function calendar()
+    {
+        $comics = Comic::where('status',2)->get();
+        $comics = $this->getCapa($comics->sortBy('id')->take($comics->count()));
+        return response()->json(['calendario' => $comics]);
+    }
 
     public function get($id)
     {
         $comic = Comic::find($id);
         $path = $comic->path;
 
-        $traductions = File::directories(storage_path('app/public/'.$path));
+        $traductions = File::directories(storage_path('app/public/' . $path));
 
         $pages = [];
         foreach ($traductions as $traduction) {
-            $pastas = explode("/",$traduction);
+            $pastas = explode("/", $traduction);
             $leanguage = end($pastas);
             $traduction_pages = [];
-            $files = File::files(storage_path('app/public/'.$path . $leanguage));
+            $files = File::files(storage_path('app/public/' . $path . $leanguage));
             foreach ($files as $page) {
-                $traduction_pages[] = asset(Storage::url($path . $leanguage.'/'.$page->getFilename()));
+                $traduction_pages[] = asset(Storage::url($path . $leanguage . '/' . $page->getFilename()));
             }
             $pages[$leanguage] = $traduction_pages;
         }
         return response()->json(['comic' => $comic, 'pages' => $pages]);
     }
 
-    public function createComic()
+    public function createComic(Request $request)
     {
+        $files = $request->file('files');
+        $data = $request->all();
+        if (count($files) < 1) {
+            return response()->json(['status' => 'Error', 'message' => 'files não enviado']);
+        }
 
+        if (!isset($data['title'])) {
+            return response()->json(['status' => 'Error', 'message' => 'title não enviado']);
+        }
+
+        if (!isset($data['edition'])) {
+            return response()->json(['status' => 'Error', 'message' => 'edition não enviado']);
+        }
+
+        if (!isset($data['arch'])) {
+            return response()->json(['status' => 'Error', 'message' => 'arch não enviado']);
+        }
+
+        if (!isset($data['total_arch'])) {
+            return response()->json(['status' => 'Error', 'message' => 'total_arch não enviado']);
+        }
+
+        if (!isset($data['launch_date'])) {
+            return response()->json(['status' => 'Error', 'message' => 'launch_date não enviado']);
+        }
+
+        if (!isset($data['language'])) {
+            return response()->json(['status' => 'Error', 'message' => 'language não enviado']);
+        }
+
+        $comic = $this->saveComic($data);
+        $path_name = $this->clean($comic->title);
+        $path = 'comics/'.$path_name.'_'.$comic->edition.'_'.$comic->arch.'/';
+        $comic->path = $path;
+        $comic->save();
+
+        foreach ($files as $file) {
+            $name = $file->getClientOriginalName();
+            $file->storeAs('public/'.$path.$data['language'].'/',$name);
+        }
+
+        return response()->json(['status'=> 'Success', 'message' => 'Comic adicionada com sucesso']);
     }
 
 
@@ -65,15 +114,37 @@ class ComicController extends BaseController
 
         foreach ($comics as $comic) {
 
-            if (!File::exists(storage_path('app/public/'.$comic->path.'pt_br'))){
+            if (!File::exists(storage_path('app/public/' . $comic->path . 'pt_br'))) {
                 $comic->capa = null;
                 continue;
             }
-            $capa = File::files(storage_path('app/public/'.$comic->path.'pt_br'));
+            $capa = File::files(storage_path('app/public/' . $comic->path . 'pt_br'));
 
-            $comic->capa = asset(Storage::url($comic->path.'pt_br/'.$capa[0]->getFilename()));
+            $comic->capa = asset(Storage::url($comic->path . 'pt_br/' . $capa[0]->getFilename()));
         }
         return $comics;
+    }
+
+    private function saveComic($data)
+    {
+        return Comic::create([
+            'title' => $data['title'],
+            'subtitle' => $data['subtitle'],
+            'edition' => $data['edition'],
+            'arch' => $data['arch'],
+            'total_arch' => $data['total_arch'],
+            'draftsman' => $data['draftsman'],
+            'colorist' => $data['colorist'],
+            'reviewer' => $data['reviewer'],
+            'serie_id' => $data['serie_id'],
+            'status' => $data['status'],
+            'changer' => $data['changer'],
+            'comments' => $data['comments'],
+            'pages' => $data['pages'],
+            'comic_type_id' => $data['comic_type_id'],
+            'launch_date' => $data['launch_date'],
+        ]);
+
     }
 
     private function clean($string)

@@ -28,7 +28,8 @@ class Comic extends Model
       'pages',
       'comic_type_id',
       'old_id',
-      'category',
+      'launch_date',
+      'serie_id',
     ];
 
     protected $hidden = [
