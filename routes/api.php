@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PaymentsController;
+use App\Http\Controllers\Api\PlansController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
@@ -23,6 +24,8 @@ Route::post('/register', [UserController::class,'store']);
 Route::prefix('payments')->middleware('apiJwt')->group(function () {
     Route::post('stripe', [PaymentsController::class, 'stripeCheckout']);
 });
+
+Route::get('plans', [PlansController::class, 'index'])->middleware('apiJwt');
 
 Route::middleware('apiJwt')->prefix('/user')->group(function (){
     Route::get('/',[UserController::class, 'getAll'])->middleware('adminMiddleware');
