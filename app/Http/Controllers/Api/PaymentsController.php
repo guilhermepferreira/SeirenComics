@@ -15,10 +15,13 @@ class PaymentsController extends Controller
 
         $stripeCheckout = auth('api')
             ->user()
-            ->checkout($plan->stripe_id, $plan->value)
+            ->checkout($plan->stripe_id, [
+                'success_url' => config('app.payments.stripe.success_url'),
+                'cancel_url' => config('app.payments.stripe.cancel_url')
+            ])
             ->asStripeCheckoutSession();
 
-        $stripeKey = getenv('STRIPE_KEY');
+        $stripeKey = config('app.payments.stripe.key');
 
         return response()->json([
             'key' => $stripeKey,
