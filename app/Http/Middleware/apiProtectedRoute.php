@@ -20,7 +20,7 @@ class apiProtectedRoute extends BaseMiddleware
      */
 
     private CONST ADMIN = 1;
-    private CONST USER = 2;
+
     public function handle(Request $request, Closure $next)
     {
         try {
@@ -36,7 +36,7 @@ class apiProtectedRoute extends BaseMiddleware
         }
 
         if ($user->user_type_id == self::ADMIN) {
-            return response()->json(['message' => 'Você é admin']);
+            return $next($request);
         }
 
         $licenseIsValid = Carbon::parse($user->license_end)->gte(Carbon::now());
