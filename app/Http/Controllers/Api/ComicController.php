@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\Comic;
+use App\Models\Serie;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -34,9 +35,10 @@ class ComicController extends BaseController
             'todos' => $comics
         ]);
     }
+
     public function calendar()
     {
-        $comics = Comic::where('status',2)->get();
+        $comics = Comic::where('status', 2)->get();
         $comics = $this->getCapa($comics->sortBy('id')->take($comics->count()));
         return response()->json(['calendario' => $comics]);
     }
@@ -96,16 +98,16 @@ class ComicController extends BaseController
 
         $comic = $this->saveComic($data);
         $path_name = $this->clean($comic->title);
-        $path = 'comics/'.$path_name.'_'.$comic->edition.'_'.$comic->arch.'/';
+        $path = 'comics/' . $path_name . '_' . $comic->edition . '_' . $comic->arch . '/';
         $comic->path = $path;
         $comic->save();
 
         foreach ($files as $file) {
             $name = $file->getClientOriginalName();
-            $file->storeAs('public/'.$path.$data['language'].'/',$name);
+            $file->storeAs('public/' . $path . $data['language'] . '/', $name);
         }
 
-        return response()->json(['status'=> 'Success', 'message' => 'Comic adicionada com sucesso']);
+        return response()->json(['status' => 'Success', 'message' => 'Comic adicionada com sucesso']);
     }
 
 
@@ -144,6 +146,27 @@ class ComicController extends BaseController
             'comic_type_id' => $data['comic_type_id'],
             'launch_date' => $data['launch_date'],
         ]);
+
+    }
+
+    public function addSerie()
+    {
+
+        $series = Serie::all();
+        foreach ($series as $serie) {
+
+            $comics = Comic::where('comments', 'like', '%'.$serie->name.'%')->get();
+
+            if ($comics->isEmpty()) {
+                continue;
+            }
+            foreach ($comics as $comic){
+                $comic->serie_id = $serie->id;
+                $comic->save();
+                $comic->fresh();
+            }
+
+        }
 
     }
 

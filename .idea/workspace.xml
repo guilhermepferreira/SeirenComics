@@ -22,14 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Api retornando todos os usuarios;">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c7f047ac-a9be-4731-8871-748b486d35af.xml" afterDir="false" />
+    <list default="true" id="259149ae-d8c1-4991-a83d-9db5cf18b9e8" name="Default Changelist" comment="Crud de criação de hq">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ComicController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Comic.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Comic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -405,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614556033407</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Crud de criação de hq">
+      <created>1614639175339</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1614639175339</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,6 +441,7 @@
     <MESSAGE value="Rota para realizar pagamento com o stripe que retorna id da sessao e a chave publica" />
     <MESSAGE value="Finaliza implementação do stripe checkout" />
     <MESSAGE value="Lista todos os planos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lista todos os planos" />
+    <MESSAGE value="Crud de criação de hq" />
+    <option name="LAST_COMMIT_MESSAGE" value="Crud de criação de hq" />
   </component>
 </project>
