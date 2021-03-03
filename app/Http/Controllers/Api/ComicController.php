@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Spatie\QueryBuilder\QueryBuilder;
 use function PHPUnit\Framework\isEmpty;
 
 class ComicController extends BaseController
@@ -41,6 +42,19 @@ class ComicController extends BaseController
         $comics = Comic::where('status', 2)->get();
         $comics = $this->getCapa($comics->sortBy('id')->take($comics->count()));
         return response()->json(['calendario' => $comics]);
+    }
+
+    public function getAll()
+    {
+        $comics = QueryBuilder::for(Comic::class)
+            ->allowedFilters([
+                'id', 'old_id', 'title', 'subtitle', 'edition', 'arch', 'total_arch', 'rating',
+                'type.name', 'type.short_name'
+            ])
+            ->allowedIncludes(['type'])
+            ->paginate();
+
+        return response()->json($comics);
     }
 
     public function get($id)
