@@ -20,7 +20,8 @@ use \App\Http\Controllers\Api\ComicController;
 
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/register', [UserController::class,'store']);
-
+Route::get('addSerie',[ComicController::class, 'addSerie']);
+Route::get('/addComentarios',[ComicController::class, 'comentarios']);
 
 Route::prefix('payments')->middleware('apiJwt')->group(function () {
     Route::post('stripe', [PaymentsController::class, 'stripeCheckout']);
@@ -43,5 +44,4 @@ Route::middleware('apiJwt')->prefix('/comics')->group(function (){
     Route::get('/calendario',[ComicController::class, 'calendar'])->name('get.comic.calendar');
     Route::Post('/create',[ComicController::class, 'createComic'])->middleware('adminMiddleware')->name('create.comic');
 });
-Route::get('addSerie',[ComicController::class, 'addSerie']);
-Route::get('/addComentarios',[ComicController::class, 'comentarios']);
+
