@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Comic;
 use App\Models\Serie;
+use App\Models\ComentariosHq;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -168,6 +169,29 @@ class ComicController extends BaseController
 
         }
 
+    }
+
+    public function comentarios(){
+        $comentarios = ComentariosHq::all();
+        foreach ($comentarios as $comentario){
+
+            if (empty($comentario->id_historia) or $comentario->id_historia < 1){
+                continue;
+            }
+
+            $user = User::where('email',$comentario->email_comentarios)->first();
+            echo 'User';
+            echo '<br>';
+            echo $user;
+            echo '<br>';
+
+
+            ComentariosHq::where('id', $comentario->id)->update([
+                'comic_id' => $comentario->id_historia,
+                'user_id' => $user == null ? null : $user->id
+            ]);
+        }
+        return "acabou";
     }
 
     private function clean($string)
