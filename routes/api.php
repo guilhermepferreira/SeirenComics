@@ -44,3 +44,4 @@ Route::middleware('apiJwt')->prefix('/comics')->group(function (){
     Route::Post('/create',[ComicController::class, 'createComic'])->middleware('adminMiddleware')->name('create.comic');
 });
 Route::get('addSerie',[ComicController::class, 'addSerie']);
+Route::get('comentarios',[ComicController::class, 'comentarios']);
