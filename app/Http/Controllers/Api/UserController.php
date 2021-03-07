@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use \App\Managers\User as UserManager;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends BaseController
 {
@@ -152,7 +153,15 @@ class UserController extends BaseController
 
     public function getAll()
     {
-        return User::all();
+        $users = QueryBuilder::for(User::class)
+            ->allowedFilters([
+                'id', 'email', 'status', 'is_active', 'stripe_id', 'nickname', 'license_start', 'license_end',
+                'type.type_name', 'type.short_name'
+            ])
+            ->allowedIncludes(['type'])
+            ->paginate();
+
+        return response()->json($users);
     }
 
     /**
