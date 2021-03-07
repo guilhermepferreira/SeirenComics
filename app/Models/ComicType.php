@@ -21,7 +21,8 @@ class ComicType extends Model
         'id',
         'updated_at',
     ];
-    public function comics(): \Illuminate\Database\Eloquent\Relations\HasMany
+
+    public function comics()
     {
         return $this->hasMany(Comic::class, 'comic_type_id', 'id');
     }

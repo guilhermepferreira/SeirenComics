@@ -8,6 +8,7 @@ use App\Models\Comic;
 use App\Models\Serie;
 use App\Models\ComentariosHq;
 use App\Models\User;
+use App\Models\ComicType;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -170,12 +171,12 @@ class ComicController extends BaseController
         $series = Serie::all();
         foreach ($series as $serie) {
 
-            $comics = Comic::where('comments', 'like', '%'.$serie->name.'%')->get();
+            $comics = Comic::where('comments', 'like', '%' . $serie->name . '%')->get();
 
             if ($comics->isEmpty()) {
                 continue;
             }
-            foreach ($comics as $comic){
+            foreach ($comics as $comic) {
                 $comic->serie_id = $serie->id;
                 $comic->save();
                 $comic->fresh();
@@ -185,15 +186,16 @@ class ComicController extends BaseController
 
     }
 
-    public function comentarios(){
+    public function comentarios()
+    {
         $comentarios = ComentariosHq::all();
-        foreach ($comentarios as $comentario){
+        foreach ($comentarios as $comentario) {
 
-            if (empty($comentario->id_historia) or $comentario->id_historia < 1){
+            if (empty($comentario->id_historia) or $comentario->id_historia < 1) {
                 continue;
             }
 
-            $user = User::where('email',$comentario->email_comentarios)->first();
+            $user = User::where('email', $comentario->email_comentarios)->first();
             echo 'User';
             echo '<br>';
             echo $user;
@@ -206,6 +208,11 @@ class ComicController extends BaseController
             ]);
         }
         return "acabou";
+    }
+
+    public function getTypes()
+    {
+        return ComicType::all();
     }
 
     private function clean($string)
