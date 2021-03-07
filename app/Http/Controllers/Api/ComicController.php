@@ -128,6 +128,35 @@ class ComicController extends BaseController
         return $comics;
     }
 
+    public function removeComic($comic_id)
+    {
+        Comic::where('id', $comic_id)->delete();
+        return response()->json(['status' => 'Success', 'message' => 'Comic removida com sucesso.']);
+    }
+
+    public function updateComic(Request $request)
+    {
+        $data = $request->all();
+
+        return Comic::where('id', $data['id'])->update([
+            'title' => $data['title'],
+            'subtitle' => $data['subtitle'],
+            'edition' => $data['edition'],
+            'arch' => $data['arch'],
+            'total_arch' => $data['total_arch'],
+            'draftsman' => $data['draftsman'],
+            'colorist' => $data['colorist'],
+            'reviewer' => $data['reviewer'],
+            'serie_id' => $data['serie_id'],
+            'status' => $data['status'],
+            'changer' => $data['changer'],
+            'comments' => $data['comments'],
+            'pages' => $data['pages'],
+            'comic_type_id' => $data['comic_type_id'],
+            'launch_date' => $data['launch_date'],
+        ]);
+    }
+
     private function saveComic($data)
     {
         return Comic::create([
@@ -148,50 +177,6 @@ class ComicController extends BaseController
             'launch_date' => $data['launch_date'],
         ]);
 
-    }
-
-    public function addSerie()
-    {
-
-        $series = Serie::all();
-        foreach ($series as $serie) {
-
-            $comics = Comic::where('comments', 'like', '%'.$serie->name.'%')->get();
-
-            if ($comics->isEmpty()) {
-                continue;
-            }
-            foreach ($comics as $comic){
-                $comic->serie_id = $serie->id;
-                $comic->save();
-                $comic->fresh();
-            }
-
-        }
-
-    }
-
-    public function comentarios(){
-        $comentarios = ComentariosHq::all();
-        foreach ($comentarios as $comentario){
-
-            if (empty($comentario->id_historia) or $comentario->id_historia < 1){
-                continue;
-            }
-
-            $user = User::where('email',$comentario->email_comentarios)->first();
-            echo 'User';
-            echo '<br>';
-            echo $user;
-            echo '<br>';
-
-
-            ComentariosHq::where('id', $comentario->id)->update([
-                'comic_id' => $comentario->id_historia,
-                'user_id' => $user == null ? null : $user->id
-            ]);
-        }
-        return "acabou";
     }
 
     private function clean($string)
