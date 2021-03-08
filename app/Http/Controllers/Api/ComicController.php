@@ -53,7 +53,7 @@ class ComicController extends BaseController
                 'id', 'old_id', 'title', 'subtitle', 'edition', 'arch', 'total_arch', 'rating',
                 'type.name', 'type.short_name'
             ])
-            ->allowedIncludes(['type'])
+            ->allowedIncludes(['type','traductions'])
             ->paginate();
 
         return response()->json($comics);
@@ -184,30 +184,6 @@ class ComicController extends BaseController
 
         }
 
-    }
-
-    public function comentarios()
-    {
-        $comentarios = ComentariosHq::all();
-        foreach ($comentarios as $comentario) {
-
-            if (empty($comentario->id_historia) or $comentario->id_historia < 1) {
-                continue;
-            }
-
-            $user = User::where('email', $comentario->email_comentarios)->first();
-            echo 'User';
-            echo '<br>';
-            echo $user;
-            echo '<br>';
-
-
-            ComentariosHq::where('id', $comentario->id)->update([
-                'comic_id' => $comentario->id_historia,
-                'user_id' => $user == null ? null : $user->id
-            ]);
-        }
-        return "acabou";
     }
 
     public function getTypes()

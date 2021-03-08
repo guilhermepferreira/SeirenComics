@@ -28,6 +28,7 @@ Route::prefix('payments')->middleware('apiJwt')->group(function () {
 });
 
 Route::get('plans', [PlansController::class, 'index'])->middleware('apiJwt');
+Route::post('plans/update', [PlansController::class, 'updatePlan'])->middleware('apiJwt','adminMiddleware')->name('admin.update.plan');
 
 Route::middleware('apiJwt')->prefix('/user')->group(function (){
     Route::get('/',[UserController::class, 'getAll'])->middleware('adminMiddleware');
