@@ -9,6 +9,7 @@ use App\Models\Serie;
 use App\Models\ComentariosHq;
 use App\Models\User;
 use App\Models\ComicType;
+use App\Models\ComicTraduction;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -126,7 +127,49 @@ class ComicController extends BaseController
         return response()->json(['status' => 'Success', 'message' => 'Comic adicionada com sucesso']);
     }
 
+    public function createTraduction(Request $request)
+    {
+        $data = $request->all();
 
+        if (!isset($data['comic_id'])) {
+            return response()->json(['status' => 'Error', 'message' => 'comic_id não enviado']);
+        }
+
+        if (!isset($data['translated_name'])) {
+            return response()->json(['status' => 'Error', 'message' => 'translated_name não enviado']);
+        }
+
+        if (!isset($data['language'])) {
+            return response()->json(['status' => 'Error', 'message' => 'language não enviado']);
+        }
+
+        return ComicTraduction::create($data);
+
+    }
+
+    public function updateTraduction(Request $request)
+    {
+        $data = $request->all();
+
+        if (!isset($data['comic_id'])) {
+            return response()->json(['status' => 'Error', 'message' => 'comic_id não enviado']);
+        }
+
+        if (!isset($data['translated_name'])) {
+            return response()->json(['status' => 'Error', 'message' => 'translated_name não enviado']);
+        }
+
+        if (!isset($data['language'])) {
+            return response()->json(['status' => 'Error', 'message' => 'language não enviado']);
+        }
+
+        return ComicTraduction::where('id',$data['id'])->update([
+            'comic_id' => $data['comic_id'],
+            'translated_name' => $data['translated_name'],
+            'language' => $data['language'],
+        ]);
+
+    }
     private function getCapa($comics)
     {
 

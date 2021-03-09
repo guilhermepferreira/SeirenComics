@@ -46,5 +46,9 @@ Route::middleware('apiJwt')->prefix('/comics')->group(function (){
     Route::get('/calendario',[ComicController::class, 'calendar'])->name('get.comic.calendar');
     Route::Post('/create',[ComicController::class, 'createComic'])->middleware('adminMiddleware')->name('create.comic');
     Route::get('/types',[ComicController::class, 'getTypes'])->middleware('adminMiddleware')->name('types.comic');
+    Route::prefix('/traductions')->group(function (){
+        Route::post('/create',[ComicController::class,'createTraduction'])->middleware('adminMiddleware')->name('create.comic.traduction');
+        Route::post('/update',[ComicController::class,'updateTraduction'])->middleware('adminMiddleware')->name('update.comic.traduction');
+    });
 });
 
