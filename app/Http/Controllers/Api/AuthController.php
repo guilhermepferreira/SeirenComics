@@ -38,16 +38,15 @@ class AuthController extends Controller
 
         $user = UserModel::where('email',$credentials['email'])->first();
 
-        if(isEmpty($user)){
+        if(!$user instanceof UserModel){
             $user = UserModel::create([
                'email' =>  $credentials['email'],
                 'name' =>  $credentials['name'],
                 'age_verification' =>  1,
                 'user_type_id' =>  2,
-                'google_id' =>  $credentials['googleId'],
-                'password' => Hash::make($credentials['password']),
+                'google_id' =>  $credentials['googleId']
             ]);
-            $token = auth('api')->attempt(['email'=>$credentials['email'], 'password'=>$credentials['password']]);
+            $token = JWTAuth::fromUser($user);
         } else {
             if ($user->google_id == $credentials['googleId']){
                 $token = JWTAuth::fromUser($user);
