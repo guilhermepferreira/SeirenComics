@@ -132,9 +132,6 @@ class ComicController extends BaseController
     {
         $files = $request->file('files');
         $data = $request->all();
-        if (count($files) < 1) {
-            return response()->json(['status' => 'Error', 'message' => 'files não enviado']);
-        }
 
         if (!isset($data['id'])) {
             return response()->json(['status' => 'Error', 'message' => 'title não enviado']);
