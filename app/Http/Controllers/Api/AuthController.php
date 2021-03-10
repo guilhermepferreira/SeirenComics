@@ -45,9 +45,16 @@ class AuthController extends Controller
                 'user_type_id' =>  2,
                 'google_id' =>  $credentials['googleId'],
             ]);
+            $token = JWTAuth::fromUser($user);
+        } else {
+            if ($user->google_id == $credentials['googleId']){
+                $token = JWTAuth::fromUser($user);
+            }
         }
 
-        $token = JWTAuth::fromUser($user);
+        if (isEmpty($token)){
+            return response()->json(['message' => 'Error, impossivel gerar o token.'], 200);
+        }
 
         $profile = new Usermanager($user);
         return response()->json(['user' => $profile->getProfile(), 'access_token' =>$token], 200);
