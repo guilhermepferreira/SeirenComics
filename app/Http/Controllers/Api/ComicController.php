@@ -128,6 +128,64 @@ class ComicController extends BaseController
         return response()->json(['status' => 'Success', 'message' => 'Comic adicionada com sucesso']);
     }
 
+    public function updateComic(Request $request)
+    {
+        $files = $request->file('files');
+        $data = $request->all();
+        if (count($files) < 1) {
+            return response()->json(['status' => 'Error', 'message' => 'files não enviado']);
+        }
+
+        if (!isset($data['id'])) {
+            return response()->json(['status' => 'Error', 'message' => 'title não enviado']);
+        }
+
+        if (!isset($data['title'])) {
+            return response()->json(['status' => 'Error', 'message' => 'title não enviado']);
+        }
+
+        if (!isset($data['edition'])) {
+            return response()->json(['status' => 'Error', 'message' => 'edition não enviado']);
+        }
+
+        if (!isset($data['arch'])) {
+            return response()->json(['status' => 'Error', 'message' => 'arch não enviado']);
+        }
+
+        if (!isset($data['total_arch'])) {
+            return response()->json(['status' => 'Error', 'message' => 'total_arch não enviado']);
+        }
+
+        if (!isset($data['launch_date'])) {
+            return response()->json(['status' => 'Error', 'message' => 'launch_date não enviado']);
+        }
+
+        if (!isset($data['language'])) {
+            return response()->json(['status' => 'Error', 'message' => 'language não enviado']);
+        }
+
+
+        $comic= Comic::where('id', $data['id'])->update([
+            'title' => $data['title'],
+            'subtitle' => $data['subtitle'],
+            'edition' => $data['edition'],
+            'arch' => $data['arch'],
+            'total_arch' => $data['total_arch'],
+            'draftsman' => $data['draftsman'],
+            'colorist' => $data['colorist'],
+            'reviewer' => $data['reviewer'],
+            'serie_id' => $data['serie_id'],
+            'status' => $data['status'],
+            'changer' => $data['changer'],
+            'comments' => $data['comments'],
+            'pages' => $data['pages'],
+            'comic_type_id' => $data['comic_type_id'],
+            'launch_date' => $data['launch_date'],
+        ]);
+
+        return response()->json(['status' => 'Success', 'message' => 'Comic atualizada com sucesso']);
+    }
+
     public function createTraduction(Request $request)
     {
         $files = $request->file('files');

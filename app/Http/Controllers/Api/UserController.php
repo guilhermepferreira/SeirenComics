@@ -7,7 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use \App\Managers\User as UserManager;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -128,5 +130,25 @@ class UserController extends BaseController
         $user->fresh();
 
         return response()->json(['message' => 'User has been disabled'], 200);
+    }
+
+    public function getAvatars()
+    {
+        $files = File::files(storage_path('app/public/avatars'));
+        $avatars= [];
+        foreach ($files as $avatar) {
+            $avatars[] =  asset(Storage::url('app/public/avatars/' . $avatar->getFilename()));
+        }
+        return $avatars;
+    }
+
+    public function setAvatars(Request $request)
+    {
+        $data = $request->all();
+        $user = User::find(Auth::id());
+        $user->avatar_file = $data['avatar'];
+        $user->save();
+
+        return response()->json(['message' => 'Avatar adicionado com sucesso.'], 200);
     }
 }

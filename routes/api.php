@@ -30,10 +30,12 @@ Route::get('plans', [PlansController::class, 'index'])->middleware('apiJwt');
 Route::post('plans/update', [PlansController::class, 'updatePlan'])->middleware('apiJwt','adminMiddleware')->name('admin.update.plan');
 
 Route::middleware('apiJwt')->prefix('/user')->group(function (){
-    Route::get('/',[UserController::class, 'getAll'])->middleware('adminMiddleware');
     Route::get('/profile',[UserController::class, 'show'])->name('get.profile');
     Route::post('/edit/{id}',[UserController::class, 'update'])->name('update.profile');
     Route::get('/deactivate/{id}',[UserController::class, 'destroy'])->name('deactivate.profile');
+    Route::get('/avatars',[UserController::class, 'getAvatars'])->name('deactivate.profile');
+    Route::post('/avatars',[UserController::class, 'getAvatars'])->name('deactivate.profile');
+    Route::get('/',[UserController::class, 'getAll'])->middleware('adminMiddleware');
 });
 
 Route::get('home/',[ComicController::class, 'homePage'])->name('get.home');
@@ -42,7 +44,8 @@ Route::get('home/',[ComicController::class, 'homePage'])->name('get.home');
 Route::middleware('apiJwt')->prefix('/comics')->group(function (){
     Route::get('/types',[ComicController::class, 'getTypes'])->middleware('adminMiddleware')->name('types.comic');
     Route::get('/calendario',[ComicController::class, 'calendar'])->name('get.comic.calendar');
-    Route::Post('/create',[ComicController::class, 'createComic'])->middleware('adminMiddleware')->name('create.comic');
+    Route::post('/create',[ComicController::class, 'createComic'])->middleware('adminMiddleware')->name('create.comic');
+    Route::post('/update',[ComicController::class, 'updateComic'])->middleware('adminMiddleware')->name('update.comic');
     Route::get('/{id}',[ComicController::class, 'get'])->name('get.comic');
     Route::get('/',[ComicController::class, 'getAll'])->name('get.comic.all');
     Route::prefix('/traductions')->group(function (){
