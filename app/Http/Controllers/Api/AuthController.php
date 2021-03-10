@@ -47,7 +47,7 @@ class AuthController extends Controller
                 'google_id' =>  $credentials['googleId'],
                 'password' => Hash::make($credentials['password']),
             ]);
-            $token = JWTAuth::fromUser($user);
+            $token = auth('api')->attempt(['email'=>$credentials['email'], 'password'=>$credentials['password']]);
         } else {
             if ($user->google_id == $credentials['googleId']){
                 $token = JWTAuth::fromUser($user);
