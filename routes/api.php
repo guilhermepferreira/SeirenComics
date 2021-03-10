@@ -40,7 +40,7 @@ Route::get('home/',[ComicController::class, 'homePage'])->name('get.home');
 
 
 Route::middleware('apiJwt')->prefix('/comics')->group(function (){
-    Route::get('/types/',[ComicController::class, 'getTypes'])->middleware('adminMiddleware')->name('types.comic');
+    Route::get('/types',[ComicController::class, 'getTypes'])->middleware('adminMiddleware')->name('types.comic');
     Route::get('/calendario',[ComicController::class, 'calendar'])->name('get.comic.calendar');
     Route::Post('/create',[ComicController::class, 'createComic'])->middleware('adminMiddleware')->name('create.comic');
     Route::get('/{id}',[ComicController::class, 'get'])->name('get.comic');

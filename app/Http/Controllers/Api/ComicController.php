@@ -130,11 +130,14 @@ class ComicController extends BaseController
 
     public function createTraduction(Request $request)
     {
+        $files = $request->file('files');
         $data = $request->all();
 
         if (!isset($data['comic_id'])) {
             return response()->json(['status' => 'Error', 'message' => 'comic_id não enviado']);
         }
+
+        $comic = Comic::find($data['comic_id']);
 
         if (!isset($data['translated_name'])) {
             return response()->json(['status' => 'Error', 'message' => 'translated_name não enviado']);
@@ -143,8 +146,13 @@ class ComicController extends BaseController
         if (!isset($data['language'])) {
             return response()->json(['status' => 'Error', 'message' => 'language não enviado']);
         }
+        $traduction = ComicTraduction::create($data);
+        foreach ($files as $file) {
+            $name = $file->getClientOriginalName();
+            $file->storeAs('public/' . $comic->path . $data['language'] . '/', $name);
+        }
 
-        return ComicTraduction::create($data);
+        return $traduction;
 
     }
 
