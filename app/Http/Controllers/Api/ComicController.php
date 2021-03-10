@@ -157,10 +157,6 @@ class ComicController extends BaseController
             return response()->json(['status' => 'Error', 'message' => 'launch_date não enviado']);
         }
 
-        if (!isset($data['language'])) {
-            return response()->json(['status' => 'Error', 'message' => 'language não enviado']);
-        }
-
 
         $comic= Comic::where('id', $data['id'])->update([
             'title' => $data['title'],
