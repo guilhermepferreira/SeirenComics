@@ -56,7 +56,7 @@ class ComicController extends BaseController
                 'type.name', 'type.short_name'
             ])
             ->allowedIncludes(['type','traductions'])
-            ->paginate();
+            ->get();
 
         return response()->json($comics);
     }
