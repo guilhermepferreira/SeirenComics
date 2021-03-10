@@ -21,8 +21,6 @@ use \App\Http\Controllers\Api\ComicController;
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/loginGoogle', [AuthController::class,'loginGoogle']);
 Route::post('/register', [UserController::class,'store']);
-Route::get('addSerie',[ComicController::class, 'addSerie']);
-Route::get('/addComentarios',[ComicController::class, 'comentarios']);
 
 Route::prefix('payments')->middleware('apiJwt')->group(function () {
     Route::post('stripe', [PaymentsController::class, 'stripeCheckout']);
