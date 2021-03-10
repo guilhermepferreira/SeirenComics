@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\User as UserModel;
 use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use function PHPUnit\Framework\isEmpty;
 
 class AuthController extends Controller
@@ -46,14 +46,15 @@ class AuthController extends Controller
                 'user_type_id' =>  2,
                 'google_id' =>  $credentials['googleId']
             ]);
-
+            $token = JWTAuth::fromUser($user);
+        } else {
+            if ($user->google_id == $credentials['googleId']){
+                $token = JWTAuth::fromUser($user);
+            }
         }
 
-        if (!$token = auth('api')->attempt([
-            'email'=> $credentials['email'],
-            'google_id'=> $credentials['googleId'],
-            ])){
-            return response()->json(['error' => 'Unauthorized'], 401);
+        if (isEmpty($token)){
+            return response()->json(['message' => 'Error, impossivel gerar o token.'], 200);
         }
 
         $profile = new Usermanager($user);
