@@ -137,7 +137,7 @@ class UserController extends BaseController
         $files = File::files(storage_path('app/public/avatars'));
         $avatars= [];
         foreach ($files as $avatar) {
-            $avatars[] =  asset(Storage::url('app/public/avatars/' . $avatar->getFilename()));
+            $avatars[] =  asset(Storage::url('avatars/' . $avatar->getFilename()));
         }
         return $avatars;
     }
