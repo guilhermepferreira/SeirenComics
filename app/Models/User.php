@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'license_start',
         'license_end',
+        'google_id',
         'created_at',
         'updated_at'
     ];

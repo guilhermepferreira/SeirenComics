@@ -53,8 +53,11 @@ class AuthController extends Controller
             }
         }
 
-        if (isEmpty($token)){
-            return response()->json(['message' => 'Error, impossivel gerar o token.'], 200);
+        if (!$token = auth('api')->attempt([
+            'email'=> $credentials['email'],
+            'google_id'=> $credentials['googleId'],
+            ])){
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         $profile = new Usermanager($user);
