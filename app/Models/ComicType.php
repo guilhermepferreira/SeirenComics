@@ -18,7 +18,6 @@ class ComicType extends Model
     ];
     protected $hidden = [
         'created_at',
-        'id',
         'updated_at',
     ];
 
