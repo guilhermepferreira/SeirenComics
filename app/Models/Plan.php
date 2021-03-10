@@ -11,6 +11,13 @@ class Plan extends Model
     const ID_PAGSEGURO = 'PAGSEGURO';
     const ID_STRIPE = 'STRIPE';
 
+    protected $fillable =[
+        'stripe_id',
+        'pagseguro_id',
+        'name',
+        'value',
+    ];
+
     use HasFactory;
 
     public function scopeMonthly(Builder $query, string $tipo)

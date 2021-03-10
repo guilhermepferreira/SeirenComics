@@ -48,6 +48,11 @@ class ComicController extends BaseController
         return response()->json(['calendario' => $comics]);
     }
 
+    public function deleteComic($id)
+    {
+        return Comic::where('id',$id)->delete();
+    }
+
     public function getAll()
     {
         $comics = QueryBuilder::for(Comic::class)
