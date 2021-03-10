@@ -46,11 +46,7 @@ class AuthController extends Controller
                 'user_type_id' =>  2,
                 'google_id' =>  $credentials['googleId']
             ]);
-            $token = JWTAuth::fromUser($user);
-        } else {
-            if ($user->google_id == $credentials['googleId']){
-                $token = JWTAuth::fromUser($user);
-            }
+
         }
 
         if (!$token = auth('api')->attempt([
