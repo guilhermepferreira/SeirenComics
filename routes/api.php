@@ -23,7 +23,7 @@ Route::post('/loginGoogle', [AuthController::class,'loginGoogle']);
 Route::post('/register', [UserController::class,'store']);
 Route::get('addSerie',[ComicController::class, 'addSerie']);
 Route::get('/addComentarios',[ComicController::class, 'comentarios']);
-
+Route::get('/types',[ComicController::class, 'getTypes']);
 Route::prefix('payments')->middleware('apiJwt')->group(function () {
     Route::post('stripe', [PaymentsController::class, 'stripeCheckout']);
 });

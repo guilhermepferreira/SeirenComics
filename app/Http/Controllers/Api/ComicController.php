@@ -10,6 +10,7 @@ use App\Models\ComentariosHq;
 use App\Models\User;
 use App\Models\ComicType;
 use App\Models\ComicTraduction;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -174,7 +175,7 @@ class ComicController extends BaseController
     {
 
         foreach ($comics as $comic) {
-
+            $comic->launch_date = Carbon::parse($comic->launch_date)->format('m/d/y');
             if (!File::exists(storage_path('app/public/' . $comic->path . 'pt_br'))) {
                 $comic->capa = null;
                 continue;

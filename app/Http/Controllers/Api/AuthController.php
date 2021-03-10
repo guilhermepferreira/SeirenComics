@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\User as UserModel;
 use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\JWTAuth;
+use JWTAuth;
 use function PHPUnit\Framework\isEmpty;
 
 class AuthController extends Controller
@@ -40,8 +40,6 @@ class AuthController extends Controller
             'email'=> $credentials['email']
             ])->first();
 
-        $token= null;
-
         if(!$user instanceof UserModel){
             $user = UserModel::create([
                'email' =>  $credentials['email'],
@@ -50,10 +48,10 @@ class AuthController extends Controller
                 'user_type_id' =>  2,
                 'google_id' =>  $credentials['googleId']
             ]);
-            $token = (new \Tymon\JWTAuth\JWTAuth)->fromUser($user);
+            $token = JWTAuth::fromUser($user);
         } else {
             if ($user->google_id == $credentials['googleId']){
-                $token = (new \Tymon\JWTAuth\JWTAuth)->fromUser($user);
+                $token = JWTAuth::fromUser($user);
             }
         }
 
