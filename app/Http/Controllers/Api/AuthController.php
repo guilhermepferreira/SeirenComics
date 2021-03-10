@@ -36,7 +36,9 @@ class AuthController extends Controller
     {
         $credentials = $request->all();
 
-        $user = UserModel::where('email',$credentials['email'])->first();
+        $user = UserModel::where([
+            'email'=> $credentials['email']
+            ])->first();
 
         if(!$user instanceof UserModel){
             $user = UserModel::create([
