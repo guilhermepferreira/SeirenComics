@@ -7,6 +7,7 @@ use App\Managers\User as Usermanager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\User as UserModel;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\JWTAuth;
 use function PHPUnit\Framework\isEmpty;
 
@@ -44,6 +45,7 @@ class AuthController extends Controller
                 'age_verification' =>  1,
                 'user_type_id' =>  2,
                 'google_id' =>  $credentials['googleId'],
+                'password' => Hash::make($credentials['password']),
             ]);
             $token = JWTAuth::fromUser($user);
         } else {
