@@ -108,7 +108,7 @@ class UserController extends BaseController
                 'type.type_name', 'type.short_name'
             ])
             ->allowedIncludes(['type'])
-            ->paginate();
+            ->get();
 
         return response()->json($users);
     }
