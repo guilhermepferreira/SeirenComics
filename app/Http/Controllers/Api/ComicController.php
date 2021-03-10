@@ -167,7 +167,6 @@ class ComicController extends BaseController
             'draftsman' => $data['draftsman'],
             'colorist' => $data['colorist'],
             'reviewer' => $data['reviewer'],
-            'serie_id' => $data['serie_id'],
             'status' => $data['status'],
             'changer' => $data['changer'],
             'comments' => $data['comments'],
