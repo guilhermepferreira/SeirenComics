@@ -33,10 +33,7 @@ class AuthController extends Controller
 
     public function loginGoogle(Request $request)
     {
-
-
         $credentials = $request->all();
-
 
         $user = UserModel::where('email',$credentials['email'])->first();
 
@@ -46,13 +43,13 @@ class AuthController extends Controller
                 'name' =>  $credentials['name'],
                 'age_verification' =>  1,
                 'user_type_id' =>  2,
-                'google_id' =>  2,
+                'google_id' =>  $credentials['googleId'],
             ]);
         }
 
         $token = JWTAuth::fromUser($user);
 
-        $profile = new Usermanager(UserModel::find(Auth::id()));
+        $profile = new Usermanager($user);
         return response()->json(['user' => $profile->getProfile(), 'access_token' =>$token], 200);
     }
 
