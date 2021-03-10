@@ -7,6 +7,8 @@ use App\Managers\User as Usermanager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use \App\Models\User as UserModel;
+use Tymon\JWTAuth\JWTAuth;
+use function PHPUnit\Framework\isEmpty;
 
 class AuthController extends Controller
 {
@@ -24,6 +26,31 @@ class AuthController extends Controller
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        $profile = new Usermanager(UserModel::find(Auth::id()));
+        return response()->json(['user' => $profile->getProfile(), 'access_token' =>$token], 200);
+    }
+
+    public function loginGoogle(Request $request)
+    {
+
+
+        $credentials = $request->all();
+
+
+        $user = UserModel::where('email',$credentials['email'])->first();
+
+        if(isEmpty($user)){
+            $user = UserModel::create([
+               'email' =>  $credentials['email'],
+                'name' =>  $credentials['name'],
+                'age_verification' =>  1,
+                'user_type_id' =>  2,
+                'google_id' =>  2,
+            ]);
+        }
+
+        $token = JWTAuth::fromUser($user);
 
         $profile = new Usermanager(UserModel::find(Auth::id()));
         return response()->json(['user' => $profile->getProfile(), 'access_token' =>$token], 200);
