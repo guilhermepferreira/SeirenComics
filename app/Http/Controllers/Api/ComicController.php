@@ -29,10 +29,10 @@ class ComicController extends BaseController
     public function homePage()
     {
         $comics = Comic::with('type', 'traductions')->get()->sortBy('id');
-        $comics = $this->getCapa($comics->sortBy('id')->take($comics->count()));
-        $highlights = $comics->sortByDesc('rating')->take(10);
-        $mostViews = $comics->sortByDesc('views')->take(10);
-        $news = $comics->sortBy('cretead_at')->take(10);
+        $comics = $this->getCapa($comics->sortBy('id'));
+        $highlights = $comics->sortByDesc('rating')->take(100);
+        $mostViews = $comics->sortByDesc('views')->take(100);
+        $news = $comics->sortBy('cretead_at')->take(100);
         return response()->json([
             'novidades' => $news,
             'maisVistos' => $mostViews,
